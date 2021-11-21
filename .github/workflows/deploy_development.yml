@@ -56,7 +56,7 @@ jobs:
       - name: Create credential file
         run: gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.LARGE_SECRET_PASSPHRASE}}" --output ~/.clasprc.json .clasprc.json.gpg
       - name: Create project file
-        run: gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.gpg}}" --output .clasp.json .clasp_develop.json.gpg
+        run: gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.LARGE_SECRET_PASSPHRASE}}" --output .clasp.json .clasp_develop.json.gpg
       - name: Upload files
         run: npx @google/clasp push --force
       - name: Deploy application
