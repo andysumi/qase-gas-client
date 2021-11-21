@@ -1,4 +1,4 @@
-name: Test the source files
+name: Test and deploy to development
 on:
   push:
     branches-ignore:
