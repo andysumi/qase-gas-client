@@ -24,4 +24,22 @@ class Qase { // eslint-disable-line
   getSpecificProject(projectCode) {
     return this.client_.fetchGet(`/project/${projectCode}`);
   }
+
+  /**
+   * Projectを作成する
+   * @param {String} title 【必須】プロジェクト名
+   * @param {String} code 【必須】プロジェクトコード
+   * @param {Object} options APIドキュメント参照
+   * @return {Object} 処理結果
+   */
+  createProject(title, code, options) {
+    if (!title) throw new Error('"title" must be specified');
+    if (!code) throw new Error('"code" must be specified');
+
+    let payload = { title: title, code: code, };
+    if (options) payload = Object.assign(payload, options);
+
+    return this.client_.fetchPost('/project', payload);
+
+  }
 }

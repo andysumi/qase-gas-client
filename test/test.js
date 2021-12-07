@@ -27,4 +27,11 @@ function testProjectMethods_(test, common) {
     t.ok(res.status, '処理が正常に完了すること');
     t.equal(res.result.code, common.projectCode, '指定したプロジェクトが取得できること');
   });
+
+  test('createProject()', function (t) {
+    const res = common.qase.createProject('Test Project', 'TEST');
+    t.ok(res instanceof Object, 'Objectで取得できること');
+    t.ok(res.status, '処理が正常に完了すること');
+    t.equal(res.result.code, 'TEST', '指定したプロジェクトが作成されること');
+  });
 }
