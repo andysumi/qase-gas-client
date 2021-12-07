@@ -28,6 +28,15 @@ class Client {  // eslint-disable-line
     return this.fetch_('post', path, null, payload);
   }
 
+  /**
+   * Deleteリクエストを送信する
+   * @param {string} path
+   * @returns {Object} リクエスト結果
+   */
+  fetchDelete(path) {
+    return this.fetch_('delete', path);
+  }
+
   fetch_(method, path, params, payload) {
     const url = this.getApiUrl_(path, params);
     var option = {

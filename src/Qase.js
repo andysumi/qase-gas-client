@@ -40,6 +40,16 @@ class Qase { // eslint-disable-line
     if (options) payload = Object.assign(payload, options);
 
     return this.client_.fetchPost('/project', payload);
+  }
 
+  /**
+   * Projectを削除する
+   * @param {String} code 【必須】Projectを識別するCode
+   * @return {Object} 処理結果
+   */
+  deleteProject(code) {
+    if (!code) throw new Error('"code" must be specified');
+
+    return this.client_.fetchDelete(`/project/${code}`);
   }
 }
