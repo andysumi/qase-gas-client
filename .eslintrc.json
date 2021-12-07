@@ -3,9 +3,17 @@
   "plugins": ["googleappsscript"],
   "parserOptions": {},
   "env": {
+    "es6": true,
     "googleappsscript/googleappsscript": true
   },
-  "globals": {},
+  "globals": {
+    // External Libraries
+    "GasTap": true,
+    // Our classes
+    "Qase": false,
+    "Client": false,
+    "TestCommon": false
+  },
   "rules": {
     "semi": "warn",
     "quotes": ["warn", "single"],
