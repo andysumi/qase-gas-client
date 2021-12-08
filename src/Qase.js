@@ -6,7 +6,7 @@ class Qase { // eslint-disable-line
   /**
    * 全てのProjectを取得する
    * @param {Number} [limit=10]
-   * @param {Number} [offset=1]
+   * @param {Number} [offset=0]
    * @return {Object} 処理結果
    */
   getAllProjects(limit, offset) {

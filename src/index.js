@@ -10,9 +10,11 @@ function create(apiKey) { // eslint-disable-line no-unused-vars
 /**
  * 全てのProjectを取得する
  * https://developers.qase.io/reference/get-projects
+ * @param {Number} [limit=10]
+ * @param {Number} [offset=0]
  * @return {Object} 処理結果
  */
-function getAllProjects() { // eslint-disable-line no-unused-vars
+function getAllProjects(limit, offset) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
 
