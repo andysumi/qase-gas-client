@@ -8,6 +8,7 @@ function testRunner() { // eslint-disable-line no-unused-vars
 
   /***** Test cases ******************************/
   testProjectMethods_(test, common);
+  testRunMethods_(test, common);
   /***********************************************/
 
   test.finish();
@@ -40,4 +41,20 @@ function testProjectMethods_(test, common) {
     t.ok(res instanceof Object, 'Objectで取得できること');
     t.ok(res.status, '処理が正常に完了すること');
   });
+}
+
+function testRunMethods_(test, common) {
+  test('getAllTestRuns() - 検索条件なし', function (t) {
+    const res = common.qase.getAllTestRuns(common.projectCode);
+    t.ok(res instanceof Object, 'Objectで取得できること');
+    t.ok(res.status, '処理が正常に完了すること');
+    t.ok(res.result.entities.length > 0, '1件以上のProjectが取得できること');
+  })
+
+  test('getAllTestRuns() - 検索条件あり', function (t) {
+    const res = common.qase.getAllTestRuns(common.projectCode, { search: 'Test', to_start_time: new Date()}, 1, 1, true);
+    t.ok(res instanceof Object, 'Objectで取得できること');
+    t.ok(res.status, '処理が正常に完了すること');
+    t.ok(res.result.entities.length > 0, '1件以上のProjectが取得できること');
+  })
 }

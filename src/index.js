@@ -55,11 +55,17 @@ function deleteProject(code) { // eslint-disable-line no-unused-vars
  * https://developers.qase.io/reference/get-runs
  * @param {String} code 【必須】TestRunを識別するCode
  * @param {Object} filters 検索条件
+ *  @param {String} filters.search
+ *  @param {String} filters.status
+ *  @param {Number} filters.milestone
+ *  @param {Number} filters.environment
+ *  @param {Date} filters.from_start_time
+ *  @param {Date} filters.to_start_time
  * @param {Number} [limit=10]
  * @param {Number} [offset=0]
- * @param {boolean} isIncluded
+ * @param {Boolean} isIncluded
  * @return {Object} 処理結果
  */
- function getAllTestRuns() { // eslint-disable-line no-unused-vars
+ function getAllTestRuns(code, filters, limit, offset, isIncluded) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
