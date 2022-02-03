@@ -21,10 +21,10 @@ function getAllProjects(limit, offset) { // eslint-disable-line no-unused-vars
 /**
  * 指定したProjectを取得する
  * https://developers.qase.io/reference/get-project
- * @param {String} projectCode 【必須】Projectを識別するCode
+ * @param {String} code 【必須】Projectを識別するCode
  * @return {Object} 処理結果
  */
-function getSpecificProject(projectCode) { // eslint-disable-line no-unused-vars
+function getSpecificProject(code) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
 
@@ -53,7 +53,7 @@ function deleteProject(code) { // eslint-disable-line no-unused-vars
 /**
  * 全てのTestRunを取得する
  * https://developers.qase.io/reference/get-runs
- * @param {String} code 【必須】TestRunを識別するCode
+ * @param {String} code 【必須】Projectを識別するCode
  * @param {Object} filters 検索条件
  *  @param {String} filters.search
  *  @param {String} filters.status
@@ -67,5 +67,16 @@ function deleteProject(code) { // eslint-disable-line no-unused-vars
  * @return {Object} 処理結果
  */
  function getAllTestRuns(code, filters, limit, offset, isIncluded) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
+
+/**
+ * 指定したTestRunを取得する
+ * https://developers.qase.io/reference/get-run
+ * @param {String} code 【必須】Projectを識別するCode
+ * @param {Number} id 【必須】TestRunを識別するID
+ * @return {Object} 処理結果
+ */
+function getSpecificRun(code, id) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }

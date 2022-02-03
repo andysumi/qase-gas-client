@@ -18,11 +18,11 @@ class Qase { // eslint-disable-line
 
   /**
    * 指定したProjectを取得する
-   * @param {String} projectCode 【必須】Projectを識別するCode
+   * @param {String} code 【必須】Projectを識別するCode
    * @return {Object} 処理結果
    */
-  getSpecificProject(projectCode) {
-    return this.client_.fetchGet(`/project/${projectCode}`);
+  getSpecificProject(code) {
+    return this.client_.fetchGet(`/project/${code}`);
   }
 
   /**
@@ -86,5 +86,18 @@ class Qase { // eslint-disable-line
     if (isIncluded) param['include'] = 'cases';
 
     return this.client_.fetchGet(`/run/${code}`, param)
+  }
+
+  /**
+   * 指定したTestRunを取得する
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {Number} id 【必須】TestRunを識別するID
+   * @return {Object} 処理結果
+   */
+  getSpecificRun(code, id) {
+    if (!code) throw new Error('"code" must be specified');
+    if (!id) throw new Error('"id" must be specified');
+
+    return this.client_.fetchGet(`/run/${code}/${id}`);
   }
 }

@@ -57,4 +57,11 @@ function testRunMethods_(test, common) {
     t.ok(res.status, '処理が正常に完了すること');
     t.ok(res.result.entities.length > 0, '1件以上のProjectが取得できること');
   })
+
+  test('getSpecificRun()', function (t) {
+    const res = common.qase.getSpecificRun(common.projectCode, 1);
+    t.ok(res instanceof Object, 'Objectで取得できること');
+    t.ok(res.status, '処理が正常に完了すること');
+    t.equal(res.result.id, 1, '指定したプロジェクトが取得できること');
+  });
 }
