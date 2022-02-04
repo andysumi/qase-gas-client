@@ -85,7 +85,7 @@ class Qase { // eslint-disable-line
     param['offset'] = offset ? offset : 0;
     if (isIncluded) param['include'] = 'cases';
 
-    return this.client_.fetchGet(`/run/${code}`, param)
+    return this.client_.fetchGet(`/run/${code}`, param);
   }
 
   /**
@@ -99,5 +99,22 @@ class Qase { // eslint-disable-line
     if (!id) throw new Error('"id" must be specified');
 
     return this.client_.fetchGet(`/run/${code}/${id}`);
+  }
+
+  /**
+   * TestRunを作成する
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {String} title 【必須】TestRun名
+   * @param {Object} options APIドキュメント参照
+   * @return {Object} 処理結果
+   */
+  createRun(code, title, options) {
+    if (!code) throw new Error('"code" must be specified');
+    if (!title) throw new Error('"title" must be specified');
+
+    let payload = { title: title, code: code, };
+    if (options) payload = Object.assign(payload, options);
+
+    return this.client_.fetchPost(`/run/${code}`, payload);
   }
 }
