@@ -96,6 +96,18 @@ function createCase(code, title, options) { // eslint-disable-line no-unused-var
 }
 
 /**
+   * TestCaseを更新する
+   * https://developers.qase.io/reference/update-case
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {Number} id 【必須】TestCaseを識別するid
+   * @param {Object} options APIドキュメント参照
+   * @return {Object} 処理結果
+   */
+function updateCase(code, id, options) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
+
+/**
  * 全てのTestRunを取得する
  * https://developers.qase.io/reference/get-runs
  * @param {String} code 【必須】Projectを識別するCode

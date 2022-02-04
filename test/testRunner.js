@@ -91,6 +91,16 @@ function testCaseMethods_(test, common) {
       t.ok(res.status, 'getSpecificCase: TestCaseが取得されること');
       t.equal(res.result.id, id, 'getSpecificCase: "id"が作成したTestCaseと同じidであること');
     })(id);
+
+    // update
+    ((id) => {
+      const res = common.qase.updateCase(common.projectCode, id, {
+        title: 'テスト_更新',
+        steps: [{ position: 1, action: '手順_更新', data: 'データ_更新', expected_result: '期待結果_更新' }],
+      });
+      t.ok(res.status, 'updateCase: TestCaseが更新されること');
+      t.equal(res.result.id, id, 'updateCase: "id"が作成したTestCaseと同じidであること');
+    })(id);
   });
 }
 
