@@ -58,6 +58,33 @@ function testCaseMethods_(test, common) {
       t.ok(res.result.entities.length > 0, '検索条件を指定した時、1件以上のTestCaseが取得できること');
     })();
   });
+
+  test('TestCase CRUD', function (t) {
+    // create
+    const id = (() => {
+      const res = common.qase.createCase(common.projectCode, 'テスト', {
+        description: 'テストです',
+        preconditions: '前提条件',
+        postconditions: '事後条件',
+        severity: 1,
+        priority: 1,
+        behavior: 1,
+        type: 1,
+        layer: 1,
+        is_flaky: 1,
+        suite_id: 1,
+        milestone_id: 1,
+        automation: 1,
+        status: 1,
+        steps: [{ position: 1, action: '手順', data: 'データ', expected_result: '期待結果' }],
+        tags: ['test', 'api']
+      });
+      t.ok(res.status, 'createCase: TestCaseが作成されること');
+      t.equal(typeof res.result.id, 'number', 'createCase: "id"が整数であること');
+
+      return res.result.id;
+    })();
+  });
 }
 
 function testRunMethods_(test, common) {
