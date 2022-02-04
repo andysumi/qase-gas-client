@@ -101,6 +101,13 @@ function testCaseMethods_(test, common) {
       t.ok(res.status, 'updateCase: TestCaseが更新されること');
       t.equal(res.result.id, id, 'updateCase: "id"が作成したTestCaseと同じidであること');
     })(id);
+
+    // delete
+    ((id) => {
+      const res = common.qase.deleteCase(common.projectCode, id);
+      t.ok(res.status, 'deleteCase: TestCaseが削除されること');
+      t.equal(res.result.id, id, 'deleteCase: "id"が作成したTestCaseと同じidであること');
+    })(id);
   });
 }
 
