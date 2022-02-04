@@ -8,6 +8,7 @@ function testRunner() { // eslint-disable-line no-unused-vars
 
   /***** Test cases ******************************/
   testProjectMethods_(test, common);
+  testCaseMethods_(test, common);
   testRunMethods_(test, common);
   /***********************************************/
 
@@ -40,6 +41,22 @@ function testProjectMethods_(test, common) {
     const res = common.qase.deleteProject('TEST');
     t.ok(res instanceof Object, 'Objectで取得できること');
     t.ok(res.status, '処理が正常に完了すること');
+  });
+}
+
+function testCaseMethods_(test, common) {
+  test('getAllCases()', function (t) {
+    (() => {
+      const res = common.qase.getAllCases(common.projectCode);
+      t.ok(res.status, '検索条件を指定していない時、TestCaseが取得されること');
+      t.ok(res.result.entities.length > 0, '検索条件を指定していない時、1件以上のTestCaseが取得されること');
+    })();
+
+    (() => {
+      const res = common.qase.getAllCases(common.projectCode, { search: 'Test', suite_id: 1, status: 'actual' }, 1, 0);
+      t.ok(res.status, '検索条件を指定した時、TestCaseが取得できること');
+      t.ok(res.result.entities.length > 0, '検索条件を指定した時、1件以上のTestCaseが取得できること');
+    })();
   });
 }
 

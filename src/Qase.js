@@ -54,6 +54,39 @@ class Qase { // eslint-disable-line
   }
 
   /**
+   * 全てのTestCaseを取得する
+   * https://developers.qase.io/reference/get-cases
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {Object} filters 検索条件
+   *  @param {String} filters.search
+   *  @param {Number} filters.milestone_id
+   *  @param {Number} filters.suite_id
+   *  @param {String} filters.severity 使用可能な値: undefined, blocker, critical, major, normal, minor, trivial
+   *  @param {String} filters.priority 使用可能な値: undefined, high, medium, low
+   *  @param {String} filters.type 使用可能な値: other, functional smoke, regression, security, usability, performance, acceptance
+   *  @param {String} filters.behavior 使用可能な値: undefined, positive negative, destructive
+   *  @param {String} filters.automation 使用可能な値: is-not-automated, automated to-be-automated
+   *  @param {String} filters.status 使用可能な値: actual, draft deprecated
+   * @param {Number} [limit=10]
+   * @param {Number} [offset=0]
+   * @return {Object} 処理結果
+   */
+  getAllCases(code, filters, limit, offset) {
+    if (!code) throw new Error('"code" must be specified');
+
+    let param = {};
+    if (filters) {
+      for (const key in filters) {
+        param[`filters[${key}]`] = filters[key];
+      }
+    }
+    param['limit'] = limit ? limit : 10;
+    param['offset'] = offset ? offset : 0;
+
+    return this.client_.fetchGet(`/case/${code}`, param);
+  }
+
+  /**
  * 全てのTestRunを取得する
  * @param {String} code 【必須】TestRunを識別するCode
  * @param {Object} filters 検索条件
