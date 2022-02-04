@@ -146,4 +146,18 @@ class Qase { // eslint-disable-line
 
     return this.client_.fetchPatch(`/run/${code}/${id}/public`, { status: status });
   }
+
+  /**
+   * TestRunを完了にする
+   * https://developers.qase.io/reference/complete-run
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {String} id 【必須】TestRunを識別するID
+   * @return {Object} 処理結果
+   */
+  completeRun(code, id) {
+    if (!code) throw new Error('"code" must be specified');
+    if (!id) throw new Error('"id" must be specified');
+
+    return this.client_.fetchPost(`/run/${code}/${id}/complete`);
+  }
 }

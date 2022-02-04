@@ -82,6 +82,12 @@ function testRunMethods_(test, common) {
       t.equal(typeof res.result.url, 'string', 'updaRunPublication: "url"が文字列であること');
     })(id);
 
+    // complete
+    ((id) => {
+      const res = common.qase.completeRun(common.projectCode, id);
+      t.ok(res.status, 'completeRun: TestRunが完了になること');
+    })(id);
+
     // delete
     ((id) => {
       const res = common.qase.deleteRun(common.projectCode, id);
