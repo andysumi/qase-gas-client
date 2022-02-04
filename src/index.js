@@ -112,7 +112,7 @@ function deleteRun(code, id) { // eslint-disable-line no-unused-vars
    * @param {Boolean} status 【必須】true: 公開、false: 非公開
    * @return {Object} 処理結果
    */
-function updaRunPublication(code, id, status) { // eslint-disable-line no-unused-vars
+function updateRunPublication(code, id, status) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
 

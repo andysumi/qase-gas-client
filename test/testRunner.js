@@ -77,9 +77,9 @@ function testRunMethods_(test, common) {
 
     // publish
     ((id) => {
-      const res = common.qase.updaRunPublication(common.projectCode, id, true);
-      t.ok(res.status, 'updaRunPublication: TestRunが公開されること');
-      t.equal(typeof res.result.url, 'string', 'updaRunPublication: "url"が文字列であること');
+      const res = common.qase.updateRunPublication(common.projectCode, id, true);
+      t.ok(res.status, 'updateRunPublication: TestRunが公開されること');
+      t.equal(typeof res.result.url, 'string', 'updateRunPublication: "url"が文字列であること');
     })(id);
 
     // complete

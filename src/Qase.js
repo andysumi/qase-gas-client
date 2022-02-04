@@ -139,7 +139,7 @@ class Qase { // eslint-disable-line
    * @param {Boolean} status 【必須】true: 公開、false: 非公開
    * @return {Object} 処理結果
    */
-  updaRunPublication(code, id, status) {
+  updateRunPublication(code, id, status) {
     if (!code) throw new Error('"code" must be specified');
     if (!id) throw new Error('"id" must be specified');
     if (typeof status !== 'boolean') throw new Error('"status" must be boolean value');
