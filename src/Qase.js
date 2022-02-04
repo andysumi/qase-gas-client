@@ -68,7 +68,7 @@ class Qase { // eslint-disable-line
  * @param {Boolean} isIncluded
  * @return {Object} 処理結果
  */
-  getAllTestRuns(code, filters, limit, offset, isIncluded) {
+  getAllRuns(code, filters, limit, offset, isIncluded) {
     if (!code) throw new Error('"code" must be specified');
 
     let param = {};

@@ -66,7 +66,7 @@ function deleteProject(code) { // eslint-disable-line no-unused-vars
  * @param {Boolean} isIncluded
  * @return {Object} 処理結果
  */
-function getAllTestRuns(code, filters, limit, offset, isIncluded) { // eslint-disable-line no-unused-vars
+function getAllRuns(code, filters, limit, offset, isIncluded) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
 

@@ -44,15 +44,15 @@ function testProjectMethods_(test, common) {
 }
 
 function testRunMethods_(test, common) {
-  test('getAllTestRuns()', function (t) {
+  test('getAllRuns()', function (t) {
     (() => {
-      const res = common.qase.getAllTestRuns(common.projectCode);
+      const res = common.qase.getAllRuns(common.projectCode);
       t.ok(res.status, '検索条件を指定していない時、TestRunが取得されること');
       t.ok(res.result.entities.length > 0, '検索条件を指定していない時、1件以上のTestRunが取得されること');
     })();
 
     (() => {
-      const res = common.qase.getAllTestRuns(common.projectCode, { search: 'Test', to_start_time: new Date() }, 1, 1, true);
+      const res = common.qase.getAllRuns(common.projectCode, { search: 'Test', to_start_time: new Date() }, 1, 1, true);
       t.ok(res.status, '検索条件を指定した時、TestRunが取得できること');
       t.ok(res.result.entities.length > 0, '検索条件を指定した時、1件以上のTestRunが取得できること');
     })();
