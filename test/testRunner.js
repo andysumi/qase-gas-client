@@ -75,6 +75,13 @@ function testRunMethods_(test, common) {
       t.equal(res.result.id, id, 'getSpecificRun: "id"が作成したTestRunと同じidであること');
     })(id);
 
+    // publish
+    ((id) => {
+      const res = common.qase.updaRunPublication(common.projectCode, id, true);
+      t.ok(res.status, 'updaRunPublication: TestRunが公開されること');
+      t.equal(typeof res.result.url, 'string', 'updaRunPublication: "url"が文字列であること');
+    })(id);
+
     // delete
     ((id) => {
       const res = common.qase.deleteRun(common.projectCode, id);

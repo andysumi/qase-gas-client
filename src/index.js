@@ -103,3 +103,15 @@ function createRun(code, title, options) { // eslint-disable-line no-unused-vars
 function deleteRun(code, id) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
+
+/**
+   * TestRunを公開/非公開にする
+   * https://developers.qase.io/reference/update-run-publicity
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {String} id 【必須】TestRunを識別するID
+   * @param {Boolean} status 【必須】true: 公開、false: 非公開
+   * @return {Object} 処理結果
+   */
+function updaRunPublication(code, id, status) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
