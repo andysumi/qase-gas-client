@@ -86,6 +86,20 @@ class Qase { // eslint-disable-line
   }
 
   /**
+   * 指定したTestCaseを取得する
+   * https://developers.qase.io/reference/get-case
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {Number} id 【必須】TestCaseを識別するID
+   * @return {Object} 処理結果
+   */
+  getSpecificCase(code, id) {
+    if (!code) throw new Error('"code" must be specified');
+    if (!id) throw new Error('"id" must be specified');
+
+    return this.client_.fetchGet(`/case/${code}/${id}`);
+  }
+
+  /**
    * TestCaseを作成する
    * @param {String} code 【必須】Projectを識別するCode
    * @param {String} title 【必須】TestCase名

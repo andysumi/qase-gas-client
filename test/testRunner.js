@@ -84,6 +84,13 @@ function testCaseMethods_(test, common) {
 
       return res.result.id;
     })();
+
+    // get
+    ((id) => {
+      const res = common.qase.getSpecificCase(common.projectCode, id);
+      t.ok(res.status, 'getSpecificCase: TestCaseが取得されること');
+      t.equal(res.result.id, id, 'getSpecificCase: "id"が作成したTestCaseと同じidであること');
+    })(id);
   });
 }
 
