@@ -92,3 +92,14 @@ function getSpecificRun(code, id) { // eslint-disable-line no-unused-vars
 function createRun(code, title, options) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
+
+/**
+   * TestRunを削除する
+   * https://developers.qase.io/reference/delete-run
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {String} id 【必須】TestRunを識別するID
+   * @return {Object} 処理結果
+   */
+function deleteRun(code, id) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
