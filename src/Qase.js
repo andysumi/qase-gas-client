@@ -6,7 +6,7 @@ class Qase { // eslint-disable-line
   /**
    * 全てのProjectを取得する
    * @param {Number} [limit=10]
-   * @param {Number} [offset=1]
+   * @param {Number} [offset=0]
    * @return {Object} 処理結果
    */
   getAllProjects(limit, offset) {
@@ -18,11 +18,11 @@ class Qase { // eslint-disable-line
 
   /**
    * 指定したProjectを取得する
-   * @param {String} projectCode 【必須】Projectを識別するCode
+   * @param {String} code 【必須】Projectを識別するCode
    * @return {Object} 処理結果
    */
-  getSpecificProject(projectCode) {
-    return this.client_.fetchGet(`/project/${projectCode}`);
+  getSpecificProject(code) {
+    return this.client_.fetchGet(`/project/${code}`);
   }
 
   /**
@@ -51,5 +51,113 @@ class Qase { // eslint-disable-line
     if (!code) throw new Error('"code" must be specified');
 
     return this.client_.fetchDelete(`/project/${code}`);
+  }
+
+  /**
+ * 全てのTestRunを取得する
+ * @param {String} code 【必須】TestRunを識別するCode
+ * @param {Object} filters 検索条件
+ *  @param {String} filters.search
+ *  @param {String} filters.status
+ *  @param {Number} filters.milestone
+ *  @param {Number} filters.environment
+ *  @param {Date} filters.from_start_time
+ *  @param {Date} filters.to_start_time
+ * @param {Number} [limit=10]
+ * @param {Number} [offset=0]
+ * @param {Boolean} isIncluded
+ * @return {Object} 処理結果
+ */
+  getAllRuns(code, filters, limit, offset, isIncluded) {
+    if (!code) throw new Error('"code" must be specified');
+
+    let param = {};
+    if (filters) {
+      for (const key in filters) {
+        // 日付の項目はミリ秒数に変換
+        if (key === 'from_start_time' || key === 'to_start_time') {
+          filters[key] = filters[key].getTime();
+        }
+        param[`filters[${key}]`] = filters[key];
+      }
+    }
+    param['limit'] = limit ? limit : 10;
+    param['offset'] = offset ? offset : 0;
+    if (isIncluded) param['include'] = 'cases';
+
+    return this.client_.fetchGet(`/run/${code}`, param);
+  }
+
+  /**
+   * 指定したTestRunを取得する
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {Number} id 【必須】TestRunを識別するID
+   * @return {Object} 処理結果
+   */
+  getSpecificRun(code, id) {
+    if (!code) throw new Error('"code" must be specified');
+    if (!id) throw new Error('"id" must be specified');
+
+    return this.client_.fetchGet(`/run/${code}/${id}`);
+  }
+
+  /**
+   * TestRunを作成する
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {String} title 【必須】TestRun名
+   * @param {Object} options APIドキュメント参照
+   * @return {Object} 処理結果
+   */
+  createRun(code, title, options) {
+    if (!code) throw new Error('"code" must be specified');
+    if (!title) throw new Error('"title" must be specified');
+
+    let payload = { title: title, code: code, };
+    if (options) payload = Object.assign(payload, options);
+
+    return this.client_.fetchPost(`/run/${code}`, payload);
+  }
+
+  /**
+   * TestRunを削除する
+   * https://developers.qase.io/reference/delete-run
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {String} id 【必須】TestRunを識別するID
+   * @return {Object} 処理結果
+   */
+  deleteRun(code, id) {
+    if (!code) throw new Error('"code" must be specified');
+    if (!id) throw new Error('"id" must be specified');
+
+    return this.client_.fetchDelete(`/run/${code}/${id}`);
+  }
+
+  /**
+   * TestRunを公開/非公開にする
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {String} id 【必須】TestRunを識別するID
+   * @param {Boolean} status 【必須】true: 公開、false: 非公開
+   * @return {Object} 処理結果
+   */
+  updateRunPublication(code, id, status) {
+    if (!code) throw new Error('"code" must be specified');
+    if (!id) throw new Error('"id" must be specified');
+    if (typeof status !== 'boolean') throw new Error('"status" must be boolean value');
+
+    return this.client_.fetchPatch(`/run/${code}/${id}/public`, { status: status });
+  }
+
+  /**
+   * TestRunを完了にする
+   * https://developers.qase.io/reference/complete-run
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {String} id 【必須】TestRunを識別するID
+   * @return {Object} 処理結果
+   */
+  completeRun(code, id) {
+    if (!code) throw new Error('"code" must be specified');
+    if (!id) throw new Error('"id" must be specified');
+
+    return this.client_.fetchPost(`/run/${code}/${id}/complete`);
   }
 }
