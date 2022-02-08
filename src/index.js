@@ -51,6 +51,74 @@ function deleteProject(code) { // eslint-disable-line no-unused-vars
 }
 
 /**
+ * 全てのTestCaseを取得する
+ * https://developers.qase.io/reference/get-cases
+ * @param {String} code 【必須】Projectを識別するCode
+ * @param {Object} filters 検索条件
+ *  @param {String} filters.search
+ *  @param {Number} filters.milestone_id
+ *  @param {Number} filters.suite_id
+ *  @param {String} filters.severity 使用可能な値: undefined, blocker, critical, major, normal, minor, trivial
+ *  @param {String} filters.priority 使用可能な値: undefined, high, medium, low
+ *  @param {String} filters.type 使用可能な値: other, functional smoke, regression, security, usability, performance, acceptance
+ *  @param {String} filters.behavior 使用可能な値: undefined, positive negative, destructive
+ *  @param {String} filters.automation 使用可能な値: is-not-automated, automated to-be-automated
+ *  @param {String} filters.status 使用可能な値: actual, draft deprecated
+ * @param {Number} [limit=10]
+ * @param {Number} [offset=0]
+ * @return {Object} 処理結果
+ */
+function getAllCases(code, filters, limit, offset) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
+
+/**
+ * 指定したTestCaseを取得する
+ * https://developers.qase.io/reference/get-case
+ * @param {String} code 【必須】Projectを識別するCode
+ * @param {Number} id 【必須】TestCaseを識別するID
+ * @return {Object} 処理結果
+ */
+function getSpecificCase(code, id) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
+
+/**
+   * TestCaseを作成する
+   * https://developers.qase.io/reference/create-case
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {String} title 【必須】TestCase名
+   * @param {Object} options APIドキュメント参照
+   * @return {Object} 処理結果
+   */
+function createCase(code, title, options) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
+
+/**
+   * TestCaseを更新する
+   * https://developers.qase.io/reference/update-case
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {Number} id 【必須】TestCaseを識別するid
+   * @param {Object} options APIドキュメント参照
+   * @return {Object} 処理結果
+   */
+function updateCase(code, id, options) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
+
+/**
+   * TestCaseを削除する
+   * https://developers.qase.io/reference/delete-case
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {String} id 【必須】TestCaseを識別するID
+   * @return {Object} 処理結果
+   */
+function deleteCase(code, id) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
+
+/**
  * 全てのTestRunを取得する
  * https://developers.qase.io/reference/get-runs
  * @param {String} code 【必須】Projectを識別するCode

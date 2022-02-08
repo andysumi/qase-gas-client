@@ -8,6 +8,7 @@ function testRunner() { // eslint-disable-line no-unused-vars
 
   /***** Test cases ******************************/
   testProjectMethods_(test, common);
+  testCaseMethods_(test, common);
   testRunMethods_(test, common);
   /***********************************************/
 
@@ -40,6 +41,73 @@ function testProjectMethods_(test, common) {
     const res = common.qase.deleteProject('TEST');
     t.ok(res instanceof Object, 'Objectで取得できること');
     t.ok(res.status, '処理が正常に完了すること');
+  });
+}
+
+function testCaseMethods_(test, common) {
+  test('getAllCases()', function (t) {
+    (() => {
+      const res = common.qase.getAllCases(common.projectCode);
+      t.ok(res.status, '検索条件を指定していない時、TestCaseが取得されること');
+      t.ok(res.result.entities.length > 0, '検索条件を指定していない時、1件以上のTestCaseが取得されること');
+    })();
+
+    (() => {
+      const res = common.qase.getAllCases(common.projectCode, { search: 'Test', suite_id: 1, status: 'actual' }, 1, 0);
+      t.ok(res.status, '検索条件を指定した時、TestCaseが取得できること');
+      t.ok(res.result.entities.length > 0, '検索条件を指定した時、1件以上のTestCaseが取得できること');
+    })();
+  });
+
+  test('TestCase CRUD', function (t) {
+    // create
+    const id = (() => {
+      const res = common.qase.createCase(common.projectCode, 'テスト', {
+        description: 'テストです',
+        preconditions: '前提条件',
+        postconditions: '事後条件',
+        severity: 1,
+        priority: 1,
+        behavior: 1,
+        type: 1,
+        layer: 1,
+        is_flaky: 1,
+        suite_id: 1,
+        milestone_id: 1,
+        automation: 1,
+        status: 1,
+        steps: [{ position: 1, action: '手順', data: 'データ', expected_result: '期待結果' }],
+        tags: ['test', 'api']
+      });
+      t.ok(res.status, 'createCase: TestCaseが作成されること');
+      t.equal(typeof res.result.id, 'number', 'createCase: "id"が整数であること');
+
+      return res.result.id;
+    })();
+
+    // get
+    ((id) => {
+      const res = common.qase.getSpecificCase(common.projectCode, id);
+      t.ok(res.status, 'getSpecificCase: TestCaseが取得されること');
+      t.equal(res.result.id, id, 'getSpecificCase: "id"が作成したTestCaseと同じidであること');
+    })(id);
+
+    // update
+    ((id) => {
+      const res = common.qase.updateCase(common.projectCode, id, {
+        title: 'テスト_更新',
+        steps: [{ position: 1, action: '手順_更新', data: 'データ_更新', expected_result: '期待結果_更新' }],
+      });
+      t.ok(res.status, 'updateCase: TestCaseが更新されること');
+      t.equal(res.result.id, id, 'updateCase: "id"が作成したTestCaseと同じidであること');
+    })(id);
+
+    // delete
+    ((id) => {
+      const res = common.qase.deleteCase(common.projectCode, id);
+      t.ok(res.status, 'deleteCase: TestCaseが削除されること');
+      t.equal(res.result.id, id, 'deleteCase: "id"が作成したTestCaseと同じidであること');
+    })(id);
   });
 }
 
