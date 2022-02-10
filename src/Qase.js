@@ -54,6 +54,30 @@ class Qase { // eslint-disable-line
   }
 
   /**
+   * 全てのTestSuiteを取得する
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {Object} filters 検索条件
+   *  @param {String} filters.search
+   * @param {Number} [limit=10]
+   * @param {Number} [offset=0]
+   * @return {Object} 処理結果
+   */
+  getAllSuites(code, filters, limit, offset) {
+    if (!code) throw new Error('"code" must be specified');
+
+    let param = {};
+    if (filters) {
+      for (const key in filters) {
+        param[`filters[${key}]`] = filters[key];
+      }
+    }
+    param['limit'] = limit ? limit : 10;
+    param['offset'] = offset ? offset : 0;
+
+    return this.client_.fetchGet(`/suite/${code}`, param);
+  }
+
+  /**
    * 全てのTestCaseを取得する
    * @param {String} code 【必須】Projectを識別するCode
    * @param {Object} filters 検索条件

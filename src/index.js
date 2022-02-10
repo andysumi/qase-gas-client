@@ -51,6 +51,20 @@ function deleteProject(code) { // eslint-disable-line no-unused-vars
 }
 
 /**
+ * 全てのTestSuiteを取得する
+ * https://developers.qase.io/reference/get-suites
+ * @param {String} code 【必須】Projectを識別するCode
+ * @param {Object} filters 検索条件
+ *  @param {String} filters.search
+ * @param {Number} [limit=10]
+ * @param {Number} [offset=0]
+ * @return {Object} 処理結果
+ */
+function getAllSuites(code, filters, limit, offset) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
+
+/**
  * 全てのTestCaseを取得する
  * https://developers.qase.io/reference/get-cases
  * @param {String} code 【必須】Projectを識別するCode
