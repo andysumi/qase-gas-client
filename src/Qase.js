@@ -54,6 +54,93 @@ class Qase { // eslint-disable-line
   }
 
   /**
+   * 全てのTestSuiteを取得する
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {Object} filters 検索条件
+   *  @param {String} filters.search
+   * @param {Number} [limit=10]
+   * @param {Number} [offset=0]
+   * @return {Object} 処理結果
+   */
+  getAllSuites(code, filters, limit, offset) {
+    if (!code) throw new Error('"code" must be specified');
+
+    let param = {};
+    if (filters) {
+      for (const key in filters) {
+        param[`filters[${key}]`] = filters[key];
+      }
+    }
+    param['limit'] = limit ? limit : 10;
+    param['offset'] = offset ? offset : 0;
+
+    return this.client_.fetchGet(`/suite/${code}`, param);
+  }
+
+  /**
+   * 指定したTestSuiteを取得する
+   * https://developers.qase.io/reference/get-suite
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {Number} id 【必須】TestCaseを識別するID
+   * @return {Object} 処理結果
+   */
+  getSpecificSuite(code, id) {
+    if (!code) throw new Error('"code" must be specified');
+    if (!id) throw new Error('"id" must be specified');
+
+    return this.client_.fetchGet(`/suite/${code}/${id}`);
+  }
+
+  /**
+   * TestSuiteを作成する
+   * https://developers.qase.io/reference/create-suite
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {String} title 【必須】TestSuite名
+   * @param {Object} options APIドキュメント参照
+   * @return {Object} 処理結果
+   */
+  createSuite(code, title, options) {
+    if (!code) throw new Error('"code" must be specified');
+    if (!title) throw new Error('"title" must be specified');
+
+    let payload = { title: title };
+    if (options) payload = Object.assign(payload, options);
+
+    return this.client_.fetchPost(`/suite/${code}`, payload);
+  }
+
+  /**
+   * TestSuiteを削除する
+   * https://developers.qase.io/reference/delete-suite
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {String} id 【必須】TestSuiteを識別するID
+   * @return {Object} 処理結果
+   */
+  deleteSuite(code, id) {
+    if (!code) throw new Error('"code" must be specified');
+    if (!id) throw new Error('"id" must be specified');
+
+    return this.client_.fetchDelete(`/suite/${code}/${id}`);
+  }
+
+  /**
+   * TestSuiteを更新する
+   * https://developers.qase.io/reference/update-suite
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {Number} id 【必須】TestSuiteを識別するid
+   * @param {Object} options APIドキュメント参照
+   * @return {Object} 処理結果
+   */
+  updateSuite(code, id, options) {
+    if (!code) throw new Error('"code" must be specified');
+    if (!id) throw new Error('"id" must be specified');
+
+    const payload = options || {};
+
+    return this.client_.fetchPatch(`/suite/${code}/${id}`, payload);
+  }
+
+  /**
    * 全てのTestCaseを取得する
    * @param {String} code 【必須】Projectを識別するCode
    * @param {Object} filters 検索条件
@@ -145,20 +232,20 @@ class Qase { // eslint-disable-line
   }
 
   /**
- * 全てのTestRunを取得する
- * @param {String} code 【必須】TestRunを識別するCode
- * @param {Object} filters 検索条件
- *  @param {String} filters.search
- *  @param {String} filters.status
- *  @param {Number} filters.milestone
- *  @param {Number} filters.environment
- *  @param {Date} filters.from_start_time
- *  @param {Date} filters.to_start_time
- * @param {Number} [limit=10]
- * @param {Number} [offset=0]
- * @param {Boolean} isIncluded
- * @return {Object} 処理結果
- */
+   * 全てのTestRunを取得する
+   * @param {String} code 【必須】TestRunを識別するCode
+   * @param {Object} filters 検索条件
+   *  @param {String} filters.search
+   *  @param {String} filters.status
+   *  @param {Number} filters.milestone
+   *  @param {Number} filters.environment
+   *  @param {Date} filters.from_start_time
+   *  @param {Date} filters.to_start_time
+   * @param {Number} [limit=10]
+   * @param {Number} [offset=0]
+   * @param {Boolean} isIncluded
+   * @return {Object} 処理結果
+   */
   getAllRuns(code, filters, limit, offset, isIncluded) {
     if (!code) throw new Error('"code" must be specified');
 

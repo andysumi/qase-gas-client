@@ -8,6 +8,7 @@ function testRunner() { // eslint-disable-line no-unused-vars
 
   /***** Test cases ******************************/
   testProjectMethods_(test, common);
+  testSuiteMethods_(test, common);
   testCaseMethods_(test, common);
   testRunMethods_(test, common);
   /***********************************************/
@@ -41,6 +42,65 @@ function testProjectMethods_(test, common) {
     const res = common.qase.deleteProject('TEST');
     t.ok(res instanceof Object, 'Objectで取得できること');
     t.ok(res.status, '処理が正常に完了すること');
+  });
+}
+
+function testSuiteMethods_(test, common) {
+  test('getAllSuites()', function (t) {
+    (() => {
+      const res = common.qase.getAllSuites(common.projectCode);
+      t.ok(res.status, '検索条件を指定していない時、TestCaseが取得されること');
+      t.ok(res.result.entities.length > 0, '検索条件を指定していない時、1件以上のTestCaseが取得されること');
+    })();
+
+    (() => {
+      const res = common.qase.getAllSuites(common.projectCode, { search: 'Test' }, 1, 0);
+      t.ok(res.status, '検索条件を指定した時、TestCaseが取得できること');
+      t.ok(res.result.entities.length > 0, '検索条件を指定した時、1件以上のTestCaseが取得できること');
+    })();
+  });
+
+  test('TestSuite CRUD', function (t) {
+    // create
+    const id = (() => {
+      const res = common.qase.createSuite(common.projectCode, 'テスト', {
+        description: '説明',
+        preconditions: '前提条件'
+      });
+      console.log(`Created "No.${res.result.id}" suite.`);
+      t.ok(res.status, 'createSuite: TestSuiteが作成されること');
+      t.equal(typeof res.result.id, 'number', 'createSuite: "id"が整数であること');
+
+      return res.result.id;
+    })();
+
+    // get
+    ((id) => {
+      const res = common.qase.getSpecificSuite(common.projectCode, id);
+      console.log(`Got "No.${res.result.id}" suite.`);
+      t.ok(res.status, 'getSpecificSuite: TestSuiteが取得されること');
+      t.equal(res.result.id, id, 'getSpecificSuite: "id"が作成したTestSuiteと同じidであること');
+    })(id);
+
+    // update
+    ((id) => {
+      const res = common.qase.updateSuite(common.projectCode, id, {
+        title: 'テスト_更新',
+        description: '説明_更新',
+        preconditions: '前提条件_更新'
+      });
+      console.log(`Updated "No.${res.result.id}" suite.`);
+      t.ok(res.status, 'updateSuite: TestSuiteが更新されること');
+      t.equal(res.result.id, id, 'updateSuite: "id"が作成したTestSuiteと同じidであること');
+    })(id);
+
+    // delete
+    ((id) => {
+      const res = common.qase.deleteSuite(common.projectCode, id);
+      console.log(`Deleated "No.${res.result.id}" suite.`);
+      t.ok(res.status, 'deleteSuite: TestSuiteが削除されること');
+      t.equal(res.result.id, id, 'deleteSuite: "id"が作成したTestSuiteと同じidであること');
+    })(id);
   });
 }
 
