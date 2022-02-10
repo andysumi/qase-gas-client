@@ -121,36 +121,36 @@ function getSpecificCase(code, id) { // eslint-disable-line no-unused-vars
 }
 
 /**
-   * TestCaseを作成する
-   * https://developers.qase.io/reference/create-case
-   * @param {String} code 【必須】Projectを識別するCode
-   * @param {String} title 【必須】TestCase名
-   * @param {Object} options APIドキュメント参照
-   * @return {Object} 処理結果
-   */
+ * TestCaseを作成する
+ * https://developers.qase.io/reference/create-case
+ * @param {String} code 【必須】Projectを識別するCode
+ * @param {String} title 【必須】TestCase名
+ * @param {Object} options APIドキュメント参照
+ * @return {Object} 処理結果
+ */
 function createCase(code, title, options) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
 
 /**
-   * TestCaseを更新する
-   * https://developers.qase.io/reference/update-case
-   * @param {String} code 【必須】Projectを識別するCode
-   * @param {Number} id 【必須】TestCaseを識別するid
-   * @param {Object} options APIドキュメント参照
-   * @return {Object} 処理結果
-   */
+ * TestCaseを更新する
+ * https://developers.qase.io/reference/update-case
+ * @param {String} code 【必須】Projectを識別するCode
+ * @param {Number} id 【必須】TestCaseを識別するid
+ * @param {Object} options APIドキュメント参照
+ * @return {Object} 処理結果
+ */
 function updateCase(code, id, options) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
 
 /**
-   * TestCaseを削除する
-   * https://developers.qase.io/reference/delete-case
-   * @param {String} code 【必須】Projectを識別するCode
-   * @param {String} id 【必須】TestCaseを識別するID
-   * @return {Object} 処理結果
-   */
+ * TestCaseを削除する
+ * https://developers.qase.io/reference/delete-case
+ * @param {String} code 【必須】Projectを識別するCode
+ * @param {String} id 【必須】TestCaseを識別するID
+ * @return {Object} 処理結果
+ */
 function deleteCase(code, id) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
@@ -187,47 +187,47 @@ function getSpecificRun(code, id) { // eslint-disable-line no-unused-vars
 }
 
 /**
-   * TestRunを作成する
-   * https://developers.qase.io/reference/create-run
-   * @param {String} code 【必須】Projectを識別するCode
-   * @param {String} title 【必須】TestRun名
-   * @param {Object} options APIドキュメント参照
-   * @return {Object} 処理結果
-   */
+ * TestRunを作成する
+ * https://developers.qase.io/reference/create-run
+ * @param {String} code 【必須】Projectを識別するCode
+ * @param {String} title 【必須】TestRun名
+ * @param {Object} options APIドキュメント参照
+ * @return {Object} 処理結果
+ */
 function createRun(code, title, options) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
 
 /**
-   * TestRunを削除する
-   * https://developers.qase.io/reference/delete-run
-   * @param {String} code 【必須】Projectを識別するCode
-   * @param {String} id 【必須】TestRunを識別するID
-   * @return {Object} 処理結果
-   */
+ * TestRunを削除する
+ * https://developers.qase.io/reference/delete-run
+ * @param {String} code 【必須】Projectを識別するCode
+ * @param {String} id 【必須】TestRunを識別するID
+ * @return {Object} 処理結果
+ */
 function deleteRun(code, id) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
 
 /**
-   * TestRunを公開/非公開にする
-   * https://developers.qase.io/reference/update-run-publicity
-   * @param {String} code 【必須】Projectを識別するCode
-   * @param {String} id 【必須】TestRunを識別するID
-   * @param {Boolean} status 【必須】true: 公開、false: 非公開
-   * @return {Object} 処理結果
-   */
+ * TestRunを公開/非公開にする
+ * https://developers.qase.io/reference/update-run-publicity
+ * @param {String} code 【必須】Projectを識別するCode
+ * @param {String} id 【必須】TestRunを識別するID
+ * @param {Boolean} status 【必須】true: 公開、false: 非公開
+ * @return {Object} 処理結果
+ */
 function updateRunPublication(code, id, status) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
 
 /**
-   * TestRunを完了にする
-   * https://developers.qase.io/reference/complete-run
-   * @param {String} code 【必須】Projectを識別するCode
-   * @param {String} id 【必須】TestRunを識別するID
-   * @return {Object} 処理結果
-   */
+ * TestRunを完了にする
+ * https://developers.qase.io/reference/complete-run
+ * @param {String} code 【必須】Projectを識別するCode
+ * @param {String} id 【必須】TestRunを識別するID
+ * @return {Object} 処理結果
+ */
 function completeRun(code, id) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
