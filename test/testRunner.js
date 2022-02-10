@@ -67,6 +67,7 @@ function testSuiteMethods_(test, common) {
         description: 'テストです',
         preconditions: '前提条件'
       });
+      console.log(`Created "No.${res.result.id}" suite.`);
       t.ok(res.status, 'createSuite: TestSuiteが作成されること');
       t.equal(typeof res.result.id, 'number', 'createSuite: "id"が整数であること');
 
@@ -76,8 +77,17 @@ function testSuiteMethods_(test, common) {
     // get
     ((id) => {
       const res = common.qase.getSpecificSuite(common.projectCode, id);
+      console.log(`Got "No.${res.result.id}" suite.`);
       t.ok(res.status, 'getSpecificSuite: TestSuiteが取得されること');
       t.equal(res.result.id, id, 'getSpecificSuite: "id"が作成したTestSuiteと同じidであること');
+    })(id);
+
+    // delete
+    ((id) => {
+      const res = common.qase.deleteSuite(common.projectCode, id);
+      console.log(`Deleated "No.${res.result.id}" suite.`);
+      t.ok(res.status, 'deleteSuite: TestSuiteが削除されること');
+      t.equal(res.result.id, id, 'deleteSuite: "id"が作成したTestSuiteと同じidであること');
     })(id);
   });
 }

@@ -108,6 +108,21 @@ class Qase { // eslint-disable-line
 
     return this.client_.fetchPost(`/suite/${code}`, payload);
   }
+
+  /**
+   * TestSuiteを削除する
+   * https://developers.qase.io/reference/delete-suite
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {String} id 【必須】TestSuiteを識別するID
+   * @return {Object} 処理結果
+   */
+  deleteSuite(code, id) {
+    if (!code) throw new Error('"code" must be specified');
+    if (!id) throw new Error('"id" must be specified');
+
+    return this.client_.fetchDelete(`/suite/${code}/${id}`);
+  }
+
   /**
    * 全てのTestCaseを取得する
    * @param {String} code 【必須】Projectを識別するCode

@@ -68,7 +68,7 @@ function getAllSuites(code, filters, limit, offset) { // eslint-disable-line no-
  * 指定したTestSuiteを取得する
  * https://developers.qase.io/reference/get-suite
  * @param {String} code 【必須】Projectを識別するCode
- * @param {Number} id 【必須】TestCaseを識別するID
+ * @param {Number} id 【必須】TestSuiteを識別するID
  * @return {Object} 処理結果
  */
 function getSpecificSuite(code, id) { // eslint-disable-line no-unused-vars
@@ -84,6 +84,17 @@ function getSpecificSuite(code, id) { // eslint-disable-line no-unused-vars
  * @return {Object} 処理結果
  */
 function createSuite(code, title, options) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
+
+/**
+ * TestSuiteを削除する
+ * https://developers.qase.io/reference/delete-suite
+ * @param {String} code 【必須】Projectを識別するCode
+ * @param {String} id 【必須】TestSuiteを識別するID
+ * @return {Object} 処理結果
+ */
+function deleteSuite(code, id) { // eslint-disable-line no-unused-vars
   throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
 }
 
