@@ -124,6 +124,23 @@ class Qase { // eslint-disable-line
   }
 
   /**
+   * TestSuiteを更新する
+   * https://developers.qase.io/reference/update-suite
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {Number} id 【必須】TestSuiteを識別するid
+   * @param {Object} options APIドキュメント参照
+   * @return {Object} 処理結果
+   */
+  updateSuite(code, id, options) {
+    if (!code) throw new Error('"code" must be specified');
+    if (!id) throw new Error('"id" must be specified');
+
+    const payload = options || {};
+
+    return this.client_.fetchPatch(`/suite/${code}/${id}`, payload);
+  }
+
+  /**
    * 全てのTestCaseを取得する
    * @param {String} code 【必須】Projectを識別するCode
    * @param {Object} filters 検索条件

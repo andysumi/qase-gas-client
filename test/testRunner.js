@@ -64,7 +64,7 @@ function testSuiteMethods_(test, common) {
     // create
     const id = (() => {
       const res = common.qase.createSuite(common.projectCode, 'テスト', {
-        description: 'テストです',
+        description: '説明',
         preconditions: '前提条件'
       });
       console.log(`Created "No.${res.result.id}" suite.`);
@@ -80,6 +80,18 @@ function testSuiteMethods_(test, common) {
       console.log(`Got "No.${res.result.id}" suite.`);
       t.ok(res.status, 'getSpecificSuite: TestSuiteが取得されること');
       t.equal(res.result.id, id, 'getSpecificSuite: "id"が作成したTestSuiteと同じidであること');
+    })(id);
+
+    // update
+    ((id) => {
+      const res = common.qase.updateSuite(common.projectCode, id, {
+        title: 'テスト_更新',
+        description: '説明_更新',
+        preconditions: '前提条件_更新'
+      });
+      console.log(`Updated "No.${res.result.id}" suite.`);
+      t.ok(res.status, 'updateSuite: TestSuiteが更新されること');
+      t.equal(res.result.id, id, 'updateSuite: "id"が作成したTestSuiteと同じidであること');
     })(id);
 
     // delete
