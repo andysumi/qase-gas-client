@@ -58,6 +58,14 @@ function testSuiteMethods_(test, common) {
       t.ok(res.status, '検索条件を指定した時、TestCaseが取得できること');
       t.ok(res.result.entities.length > 0, '検索条件を指定した時、1件以上のTestCaseが取得できること');
     })();
+
+    const id = 1;
+
+    ((id) => {
+      const res = common.qase.getSpecificSuite(common.projectCode, id);
+      t.ok(res.status, 'getSpecificSuite: TestSuiteが取得されること');
+      t.equal(res.result.id, id, 'getSpecificSuite: "id"が作成したTestSuiteと同じidであること');
+    })(id);
   });
 }
 

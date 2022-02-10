@@ -78,6 +78,20 @@ class Qase { // eslint-disable-line
   }
 
   /**
+   * 指定したTestSuiteを取得する
+   * https://developers.qase.io/reference/get-suite
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {Number} id 【必須】TestCaseを識別するID
+   * @return {Object} 処理結果
+   */
+  getSpecificSuite(code, id) {
+    if (!code) throw new Error('"code" must be specified');
+    if (!id) throw new Error('"id" must be specified');
+
+    return this.client_.fetchGet(`/suite/${code}/${id}`);
+  }
+
+  /**
    * 全てのTestCaseを取得する
    * @param {String} code 【必須】Projectを識別するCode
    * @param {Object} filters 検索条件
