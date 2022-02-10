@@ -76,6 +76,18 @@ function getSpecificSuite(code, id) { // eslint-disable-line no-unused-vars
 }
 
 /**
+ * TestSuiteを作成する
+ * https://developers.qase.io/reference/create-suite
+ * @param {String} code 【必須】Projectを識別するCode
+ * @param {String} title 【必須】TestSuite名
+ * @param {Object} options APIドキュメント参照
+ * @return {Object} 処理結果
+ */
+function createSuite(code, title, options) { // eslint-disable-line no-unused-vars
+  throw new Error('このメソッドは直接呼び出せません。createメソッドで取得したインスタンスより呼び出してください。');
+}
+
+/**
  * 全てのTestCaseを取得する
  * https://developers.qase.io/reference/get-cases
  * @param {String} code 【必須】Projectを識別するCode

@@ -92,6 +92,23 @@ class Qase { // eslint-disable-line
   }
 
   /**
+   * TestSuiteを作成する
+   * https://developers.qase.io/reference/create-suite
+   * @param {String} code 【必須】Projectを識別するCode
+   * @param {String} title 【必須】TestSuite名
+   * @param {Object} options APIドキュメント参照
+   * @return {Object} 処理結果
+   */
+  createSuite(code, title, options) {
+    if (!code) throw new Error('"code" must be specified');
+    if (!title) throw new Error('"title" must be specified');
+
+    let payload = { title: title };
+    if (options) payload = Object.assign(payload, options);
+
+    return this.client_.fetchPost(`/suite/${code}`, payload);
+  }
+  /**
    * 全てのTestCaseを取得する
    * @param {String} code 【必須】Projectを識別するCode
    * @param {Object} filters 検索条件

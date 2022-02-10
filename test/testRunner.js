@@ -58,9 +58,22 @@ function testSuiteMethods_(test, common) {
       t.ok(res.status, '検索条件を指定した時、TestCaseが取得できること');
       t.ok(res.result.entities.length > 0, '検索条件を指定した時、1件以上のTestCaseが取得できること');
     })();
+  });
 
-    const id = 1;
+  test('TestSuite CRUD', function (t) {
+    // create
+    const id = (() => {
+      const res = common.qase.createSuite(common.projectCode, 'テスト', {
+        description: 'テストです',
+        preconditions: '前提条件'
+      });
+      t.ok(res.status, 'createSuite: TestSuiteが作成されること');
+      t.equal(typeof res.result.id, 'number', 'createSuite: "id"が整数であること');
 
+      return res.result.id;
+    })();
+
+    // get
     ((id) => {
       const res = common.qase.getSpecificSuite(common.projectCode, id);
       t.ok(res.status, 'getSpecificSuite: TestSuiteが取得されること');
